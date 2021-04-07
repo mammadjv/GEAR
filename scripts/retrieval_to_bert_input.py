@@ -56,7 +56,7 @@ def process(input, output):
                         evidence_str = sentence
                         break
             if evidence_str:
-                fout.write(('%s\t%s\t%s\t%s\t%s\t%d\t%s\r\n' % (label, evidence_str, claim, index, evidence[0], evidence[1], evidence[2])).encode(ENCODING))
+                fout.write(('%s<seperator>%s<seperator>%s<seperator>%s<seperator>%s<seperator>%d<seperator>%s\r\n' % (label, evidence_str, claim, index, evidence[0], evidence[1], evidence[2])).encode(ENCODING))
             else:
                 print('Error: cant find %s %d for %s' % (article, location, index))
     fout.close()
@@ -102,7 +102,7 @@ def build_bert_train_sr_set(data_dir, output_dir):
                     #     sentence = ' '.join(words[:100])
                     # text_set.append(sentence)
 
-                    fout.write(('%s\t%s\t%s\t%d\t%s\t%s\r\n' % (label, sentence, claim, cnt, article, article_index)).encode(
+                    fout.write(('%s<seperator>%s<seperator>%s<seperator>%d<seperator>%s<seperator>%s\r\n' % (label, sentence, claim, cnt, article, article_index)).encode(
                             ENCODING))
 
             # total_evidence = ' '.join(text_set)
